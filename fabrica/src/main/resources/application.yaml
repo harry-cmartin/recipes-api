@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: fabrica
+
+  config:
+    import: optional:file:.env[.properties]
+
+  datasource:
+    url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true # Exibe as consultas
+    properties:
+      hibernate:
+        format_sql: true # Formata o SQL para
+        hbm2ddl:
+          auto: update # auto update
+    hibernate:
+      ddl-auto: update #bug
