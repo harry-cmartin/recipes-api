@@ -2,6 +2,7 @@ package com.recipes_api.fabrica.service;
 
 import com.recipes_api.fabrica.dto.RecipesDto;
 import com.recipes_api.fabrica.entity.RecipesEntity;
+import com.recipes_api.fabrica.exceptions.NoSuchDescription;
 import com.recipes_api.fabrica.mappers.RecipesMapper;
 import com.recipes_api.fabrica.repository.RecipesRepository;
 import jakarta.transaction.Transactional;
@@ -32,7 +33,16 @@ public class RecipesServiceImpl implements RecipeService{
 
     @Override
     @Transactional
-    public RecipesDto createRecipe(RecipesDto dto) {
+    public RecipesDto createRecipe(RecipesDto dto) throws NoSuchElementException, NoSuchDescription{
+
+        if(dto.getName() == null || dto.getName().isBlank()){
+            throw new NoSuchElementException();
+        }
+
+        if(dto.getDescription() == null || dto.getDescription().isBlank()){
+            throw new NoSuchDescription();
+
+        }
 
         RecipesEntity nova = recipesMapper.toEntity(dto);
 

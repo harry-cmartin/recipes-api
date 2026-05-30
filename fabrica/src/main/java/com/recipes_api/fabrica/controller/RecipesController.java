@@ -36,7 +36,7 @@ public class RecipesController {
 
 
     @PostMapping
-    public ResponseEntity<RecipesDto> createRecipe(@RequestBody RecipesDto dto) {
+    public ResponseEntity<RecipesDto> createRecipe(@RequestBody RecipesDto dto)  {
 
         RecipesDto novo = recipeService.createRecipe(dto);
 
