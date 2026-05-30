@@ -21,3 +21,26 @@ spring:
           auto: update # auto update
     hibernate:
       ddl-auto: update #bug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # Expõe todos os endpoints disponíveis no Actuator (health, info, metrics, env, beans, mappings, etc.)
+        include: "*"
+  endpoint:
+    health:
+      # Mostra os detalhes completos do health check (ex: status do banco de dados, espaço em disco)
+      show-details: always
+      # Mostra os componentes individuais que formam o status de health
+      show-components: always
+  info:
+    # Habilita a exibição de variáveis de ambiente no endpoint /actuator/info
+    env:
+      enabled: true
+    # Exibe informações do Java e do Sistema Operacional no endpoint /actuator/info
+    java:
+      enabled: true
+    os:
+      enabled: true
+
